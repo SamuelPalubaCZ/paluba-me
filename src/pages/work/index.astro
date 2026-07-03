@@ -1,0 +1,58 @@
+---
+import ExternalLink from '@tabler/icons/outline/external-link.svg';
+import { Badge } from '@/components/starwind/badge';
+import { Button } from '@/components/starwind/button';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/starwind/card';
+import SiteLayout from '@/components/SiteLayout.astro';
+import { fallbackProjects, getEntries } from '@/lib/content';
+
+const projects = await getEntries('projects', fallbackProjects);
+---
+
+<SiteLayout title="Work" description="Projects and experiments by Samuel Paluba.">
+  <section class="mx-auto grid max-w-6xl gap-8 px-5 py-16">
+    <div class="grid max-w-3xl gap-4">
+      <Badge variant="outline">Work</Badge>
+      <h1 class="text-4xl font-semibold leading-tight md:text-5xl">Projects and experiments</h1>
+      <p class="text-lg leading-8 text-muted-foreground">
+        This index is backed by the EmDash projects collection, with placeholders until real
+        projects are published.
+      </p>
+    </div>
+    <div class="grid gap-5 md:grid-cols-2">
+      {
+        projects.map((project) => (
+          <Card>
+            <CardHeader>
+              <div class="flex flex-wrap items-center gap-2">
+                {project.status && <Badge variant="secondary">{project.status}</Badge>}
+                {project.tags?.map((tag) => <Badge variant="outline">{tag}</Badge>)}
+              </div>
+              <CardTitle>{project.title}</CardTitle>
+              <CardDescription>{project.description}</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div class="flex flex-wrap gap-3">
+                <Button href={`/work/${project.slug}`} size="sm">
+                  Read more
+                </Button>
+                {project.siteUrl && (
+                  <Button href={project.siteUrl} variant="outline" size="sm">
+                    <ExternalLink />
+                    Visit
+                  </Button>
+                )}
+              </div>
+            </CardContent>
+          </Card>
+        ))
+      }
+    </div>
+  </section>
+</SiteLayout>

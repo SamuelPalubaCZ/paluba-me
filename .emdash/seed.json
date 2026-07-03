@@ -1,0 +1,88 @@
+{
+  "$schema": "https://emdashcms.com/seed.schema.json",
+  "version": "1",
+  "meta": {
+    "name": "Paluba Personal Site",
+    "description": "Editable personal website content model for paluba.me.",
+    "author": "Samuel Paluba"
+  },
+  "settings": {
+    "title": "Samuel Paluba",
+    "tagline": "Open software, hardware, Bitcoin, and decentralized technology.",
+    "postsPerPage": 10,
+    "dateFormat": "MMMM d, yyyy"
+  },
+  "collections": [
+    {
+      "slug": "pages",
+      "label": "Pages",
+      "labelSingular": "Page",
+      "supports": ["drafts", "revisions", "preview"],
+      "fields": [
+        { "slug": "title", "label": "Title", "type": "string", "required": true },
+        { "slug": "description", "label": "Description", "type": "text" },
+        { "slug": "body", "label": "Body", "type": "portableText" },
+        { "slug": "kicker", "label": "Kicker", "type": "string" }
+      ]
+    },
+    {
+      "slug": "posts",
+      "label": "Blog Posts",
+      "labelSingular": "Post",
+      "supports": ["drafts", "revisions", "preview"],
+      "fields": [
+        { "slug": "title", "label": "Title", "type": "string", "required": true },
+        { "slug": "description", "label": "Description", "type": "text" },
+        { "slug": "body", "label": "Body", "type": "portableText" },
+        { "slug": "published_at", "label": "Published At", "type": "datetime" },
+        { "slug": "featured", "label": "Featured", "type": "boolean" }
+      ]
+    },
+    {
+      "slug": "projects",
+      "label": "Projects",
+      "labelSingular": "Project",
+      "supports": ["drafts", "revisions", "preview"],
+      "fields": [
+        { "slug": "title", "label": "Title", "type": "string", "required": true },
+        { "slug": "description", "label": "Description", "type": "text" },
+        { "slug": "body", "label": "Body", "type": "portableText" },
+        { "slug": "status", "label": "Status", "type": "string" },
+        { "slug": "repo_url", "label": "Repository URL", "type": "string" },
+        { "slug": "site_url", "label": "Site URL", "type": "string" },
+        { "slug": "featured", "label": "Featured", "type": "boolean" }
+      ]
+    }
+  ],
+  "taxonomies": [
+    { "name": "categories", "label": "Categories", "hierarchical": true, "collections": ["posts"] },
+    { "name": "tags", "label": "Tags", "hierarchical": false, "collections": ["posts"] },
+    {
+      "name": "project_tags",
+      "label": "Project Tags",
+      "hierarchical": false,
+      "collections": ["projects"]
+    }
+  ],
+  "menus": [
+    {
+      "name": "primary",
+      "label": "Primary Navigation",
+      "items": [
+        { "type": "custom", "label": "Home", "url": "/" },
+        { "type": "custom", "label": "About", "url": "/about" },
+        { "type": "custom", "label": "Work", "url": "/work" },
+        { "type": "custom", "label": "Blog", "url": "/blog" },
+        { "type": "custom", "label": "Contact", "url": "/contact" }
+      ]
+    },
+    {
+      "name": "footer",
+      "label": "Footer Navigation",
+      "items": [
+        { "type": "custom", "label": "GitHub", "url": "https://github.com/SamuelPalubaCZ" },
+        { "type": "custom", "label": "Admin", "url": "/_emdash/admin" }
+      ]
+    }
+  ]
+}

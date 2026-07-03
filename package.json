@@ -1,0 +1,42 @@
+{
+  "name": "paluba-me",
+  "type": "module",
+  "version": "0.0.1",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "cf:dev": "astro build && wrangler dev",
+    "cf:deploy": "astro build && wrangler deploy",
+    "cf:types": "wrangler types",
+    "emdash:types": "emdash types",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/cloudflare": "^14.1.1",
+    "@astrojs/react": "^6.0.1",
+    "@cloudflare/workers-types": "^4.20260702.1",
+    "@emdash-cms/cloudflare": "^0.27.0",
+    "@tabler/icons": "^3.44.0",
+    "@tailwindcss/forms": "^0.5.11",
+    "@tailwindcss/vite": "^4.3.2",
+    "astro": "^7.0.6",
+    "emdash": "^0.27.0",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "tailwind-merge": "^3.6.0",
+    "tailwind-variants": "^3.2.2",
+    "tailwindcss": "^4.3.2",
+    "tw-animate-css": "^1.4.0",
+    "wrangler": "^4.107.0"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.9",
+    "@types/node": "^26.1.0",
+    "playwright": "^1.61.1",
+    "typescript": "^6.0.3"
+  }
+}

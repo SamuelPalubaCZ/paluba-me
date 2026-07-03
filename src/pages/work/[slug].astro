@@ -1,0 +1,45 @@
+---
+import BrandGithub from '@tabler/icons/outline/brand-github.svg';
+import ExternalLink from '@tabler/icons/outline/external-link.svg';
+import { Badge } from '@/components/starwind/badge';
+import { Button } from '@/components/starwind/button';
+import SiteLayout from '@/components/SiteLayout.astro';
+import { fallbackProjects, getEntry } from '@/lib/content';
+
+const slug = Astro.params.slug ?? '';
+const project = await getEntry('projects', slug, fallbackProjects);
+
+if (!project) {
+  return Astro.redirect('/work');
+}
+---
+
+<SiteLayout title={project.title} description={project.description}>
+  <article class="mx-auto grid max-w-3xl gap-8 px-5 py-16">
+    <div class="grid gap-4">
+      <div class="flex flex-wrap gap-2">
+        {project.status && <Badge variant="secondary">{project.status}</Badge>}
+        {project.tags?.map((tag) => <Badge variant="outline">{tag}</Badge>)}
+      </div>
+      <h1 class="text-4xl font-semibold leading-tight md:text-5xl">{project.title}</h1>
+      <p class="text-lg leading-8 text-muted-foreground">{project.description}</p>
+    </div>
+    <div class="grid gap-5 text-base leading-8">
+      <p>{project.body}</p>
+    </div>
+    <div class="flex flex-wrap gap-3">
+      {project.repoUrl && (
+        <Button href={project.repoUrl} variant="outline">
+          <BrandGithub />
+          Source
+        </Button>
+      )}
+      {project.siteUrl && (
+        <Button href={project.siteUrl}>
+          <ExternalLink />
+          Visit
+        </Button>
+      )}
+    </div>
+  </article>
+</SiteLayout>

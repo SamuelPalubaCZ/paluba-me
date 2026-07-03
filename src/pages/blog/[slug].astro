@@ -1,0 +1,28 @@
+---
+import { Badge } from '@/components/starwind/badge';
+import SiteLayout from '@/components/SiteLayout.astro';
+import { fallbackPosts, getEntry } from '@/lib/content';
+
+const slug = Astro.params.slug ?? '';
+const post = await getEntry('posts', slug, fallbackPosts);
+
+if (!post) {
+  return Astro.redirect('/blog');
+}
+---
+
+<SiteLayout title={post.title} description={post.description}>
+  <article class="mx-auto grid max-w-3xl gap-8 px-5 py-16">
+    <div class="grid gap-4">
+      <div class="flex flex-wrap items-center gap-2">
+        {post.date && <Badge variant="secondary">{post.date}</Badge>}
+        {post.tags?.map((tag) => <Badge variant="outline">{tag}</Badge>)}
+      </div>
+      <h1 class="text-4xl font-semibold leading-tight md:text-5xl">{post.title}</h1>
+      <p class="text-lg leading-8 text-muted-foreground">{post.description}</p>
+    </div>
+    <div class="grid gap-5 text-base leading-8">
+      <p>{post.body}</p>
+    </div>
+  </article>
+</SiteLayout>

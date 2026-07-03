@@ -1,0 +1,49 @@
+---
+import BrandGithub from '@tabler/icons/outline/brand-github.svg';
+import BrandX from '@tabler/icons/outline/brand-x.svg';
+import { Badge } from '@/components/starwind/badge';
+import { Button } from '@/components/starwind/button';
+import { Input } from '@/components/starwind/input';
+import { Label } from '@/components/starwind/label';
+import { Textarea } from '@/components/starwind/textarea';
+import SiteLayout from '@/components/SiteLayout.astro';
+import { fallbackPages, getEntry } from '@/lib/content';
+
+const page = await getEntry('pages', 'contact', fallbackPages);
+---
+
+<SiteLayout title="Contact" description={page?.description}>
+  <section class="mx-auto grid max-w-5xl gap-10 px-5 py-16 md:grid-cols-[0.9fr_1.1fr]">
+    <div class="grid content-start gap-5">
+      <Badge variant="outline">{page?.kicker ?? 'Contact'}</Badge>
+      <h1 class="text-4xl font-semibold leading-tight md:text-5xl">{page?.title}</h1>
+      <p class="text-lg leading-8 text-muted-foreground">{page?.description}</p>
+      <p class="leading-8">{page?.body}</p>
+      <div class="flex flex-wrap gap-3">
+        <Button href="https://github.com/SamuelPalubaCZ" variant="outline">
+          <BrandGithub />
+          GitHub
+        </Button>
+        <Button href="https://x.com/PalubaSamuel" variant="outline">
+          <BrandX />
+          X
+        </Button>
+      </div>
+    </div>
+    <form class="grid gap-4 rounded-lg border p-5" method="get" action="mailto:samuel.paluba@thinkhome.org">
+      <div class="grid gap-2">
+        <Label for="name">Name</Label>
+        <Input id="name" name="name" autocomplete="name" />
+      </div>
+      <div class="grid gap-2">
+        <Label for="email">Email</Label>
+        <Input id="email" name="email" type="email" autocomplete="email" />
+      </div>
+      <div class="grid gap-2">
+        <Label for="message">Message</Label>
+        <Textarea id="message" name="body" rows={7} />
+      </div>
+      <Button type="submit">Open email draft</Button>
+    </form>
+  </section>
+</SiteLayout>

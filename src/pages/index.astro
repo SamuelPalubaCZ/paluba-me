@@ -1,0 +1,136 @@
+---
+import ArrowRight from '@tabler/icons/outline/arrow-right.svg';
+import BrandGithub from '@tabler/icons/outline/brand-github.svg';
+import { Badge } from '@/components/starwind/badge';
+import { Button } from '@/components/starwind/button';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/starwind/card';
+import { Separator } from '@/components/starwind/separator';
+import SiteLayout from '@/components/SiteLayout.astro';
+import {
+  fallbackPosts,
+  fallbackProjects,
+  getEntries,
+  type SiteEntry,
+} from '@/lib/content';
+
+const posts = await getEntries('posts', fallbackPosts);
+const projects = await getEntries('projects', fallbackProjects);
+const featuredProjects = projects.filter((project) => project.featured).slice(0, 3);
+const latestPosts = posts.slice(0, 3);
+
+const tags = ['Open software', 'Hardware', 'Bitcoin', 'Decentralized tech'];
+---
+
+<SiteLayout
+  title="Samuel Paluba"
+  description="Personal website for Samuel Paluba: work, writing, and experiments around open technology."
+>
+  <section class="mx-auto grid max-w-6xl gap-10 px-5 py-16 md:grid-cols-[1.1fr_0.9fr] md:items-end md:py-24">
+    <div class="grid gap-8">
+      <div class="grid gap-5">
+        <div class="flex flex-wrap gap-2">
+          {tags.map((tag) => <Badge variant="outline">{tag}</Badge>)}
+        </div>
+        <div class="grid gap-4">
+          <h1 class="max-w-3xl text-4xl font-semibold leading-tight md:text-6xl">
+            Building and writing about technology worth understanding.
+          </h1>
+          <p class="max-w-2xl text-lg leading-8 text-muted-foreground">
+            Placeholder homepage for paluba.me. The content model is powered by EmDash, so
+            the profile, work, writing, and navigation can be edited from the CMS after launch.
+          </p>
+        </div>
+      </div>
+      <div class="flex flex-wrap gap-3">
+        <Button href="/work">
+          View work
+          <ArrowRight />
+        </Button>
+        <Button href="https://github.com/SamuelPalubaCZ" variant="outline">
+          <BrandGithub />
+          GitHub
+        </Button>
+      </div>
+    </div>
+    <Card>
+      <CardHeader>
+        <CardTitle>Current focus</CardTitle>
+        <CardDescription>Editable through EmDash once the CMS is initialized.</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <div class="grid gap-4 text-sm leading-6 text-muted-foreground">
+          <p>
+            Open and non-proprietary systems, practical software, hardware, Bitcoin, and tools
+            that stay understandable over time.
+          </p>
+          <Separator />
+          <dl class="grid gap-3">
+            <div class="grid grid-cols-[7rem_1fr] gap-3">
+              <dt class="text-foreground">Location</dt>
+              <dd>Prague, CZ</dd>
+            </div>
+            <div class="grid grid-cols-[7rem_1fr] gap-3">
+              <dt class="text-foreground">Source</dt>
+              <dd>GitHub-first, Cloudflare-hosted</dd>
+            </div>
+            <div class="grid grid-cols-[7rem_1fr] gap-3">
+              <dt class="text-foreground">CMS</dt>
+              <dd>EmDash on Cloudflare Workers, D1, and R2</dd>
+            </div>
+          </dl>
+        </div>
+      </CardContent>
+    </Card>
+  </section>
+
+  <section class="border-y bg-muted/35">
+    <div class="mx-auto grid max-w-6xl gap-6 px-5 py-12 md:grid-cols-3">
+      {
+        featuredProjects.map((project: SiteEntry) => (
+          <Card size="sm">
+            <CardHeader>
+              <CardTitle>{project.title}</CardTitle>
+              <CardDescription>{project.description}</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <a href={`/work/${project.slug}`} class="text-sm font-medium hover:underline">
+                Open project
+              </a>
+            </CardContent>
+          </Card>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="mx-auto grid max-w-6xl gap-8 px-5 py-14 md:grid-cols-[0.8fr_1.2fr]">
+    <div class="grid content-start gap-3">
+      <p class="text-sm font-medium text-muted-foreground">Writing</p>
+      <h2 class="text-3xl font-semibold">Notes and drafts</h2>
+      <p class="text-muted-foreground">
+        Blog posts are EmDash entries. These placeholders keep the layout useful before the
+        production database has real content.
+      </p>
+    </div>
+    <div class="grid gap-3">
+      {
+        latestPosts.map((post) => (
+          <a
+            href={`/blog/${post.slug}`}
+            class="grid gap-1 rounded-lg border p-4 transition-colors hover:bg-muted/60"
+          >
+            <span class="text-sm text-muted-foreground">{post.date}</span>
+            <span class="text-lg font-medium">{post.title}</span>
+            <span class="text-sm leading-6 text-muted-foreground">{post.description}</span>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+</SiteLayout>

@@ -1,0 +1,28 @@
+---
+import { Alert, AlertDescription, AlertTitle } from '@/components/starwind/alert';
+import { Badge } from '@/components/starwind/badge';
+import SiteLayout from '@/components/SiteLayout.astro';
+import { fallbackPages, getEntry } from '@/lib/content';
+
+const page = await getEntry('pages', 'about', fallbackPages);
+---
+
+<SiteLayout title="About" description={page?.description}>
+  <section class="mx-auto grid max-w-3xl gap-8 px-5 py-16">
+    <div class="grid gap-4">
+      <Badge variant="outline">{page?.kicker ?? 'About'}</Badge>
+      <h1 class="text-4xl font-semibold leading-tight md:text-5xl">{page?.title}</h1>
+      <p class="text-lg leading-8 text-muted-foreground">{page?.description}</p>
+    </div>
+    <div class="grid gap-5 text-base leading-8">
+      <p>{page?.body}</p>
+      <Alert>
+        <AlertTitle>Editable page</AlertTitle>
+        <AlertDescription>
+          Replace this placeholder in EmDash with the real biography, current interests, and
+          context you want people to understand first.
+        </AlertDescription>
+      </Alert>
+    </div>
+  </section>
+</SiteLayout>

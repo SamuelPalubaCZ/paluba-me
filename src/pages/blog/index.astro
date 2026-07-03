@@ -1,0 +1,51 @@
+---
+import { Badge } from '@/components/starwind/badge';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/starwind/card';
+import SiteLayout from '@/components/SiteLayout.astro';
+import { fallbackPosts, getEntries } from '@/lib/content';
+
+const posts = await getEntries('posts', fallbackPosts);
+---
+
+<SiteLayout title="Blog" description="Notes and writing from Samuel Paluba.">
+  <section class="mx-auto grid max-w-4xl gap-8 px-5 py-16">
+    <div class="grid gap-4">
+      <Badge variant="outline">Blog</Badge>
+      <h1 class="text-4xl font-semibold leading-tight md:text-5xl">Notes and writing</h1>
+      <p class="text-lg leading-8 text-muted-foreground">
+        Posts are managed by EmDash and rendered by Astro on Cloudflare Workers.
+      </p>
+    </div>
+    <div class="grid gap-4">
+      {
+        posts.map((post) => (
+          <Card>
+            <CardHeader>
+              <div class="flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
+                {post.date && <span>{post.date}</span>}
+                {post.tags?.map((tag) => <Badge variant="outline">{tag}</Badge>)}
+              </div>
+              <CardTitle>
+                <a href={`/blog/${post.slug}`} class="hover:underline">
+                  {post.title}
+                </a>
+              </CardTitle>
+              <CardDescription>{post.description}</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <a href={`/blog/${post.slug}`} class="text-sm font-medium hover:underline">
+                Read note
+              </a>
+            </CardContent>
+          </Card>
+        ))
+      }
+    </div>
+  </section>
+</SiteLayout>
