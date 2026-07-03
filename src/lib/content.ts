@@ -57,20 +57,20 @@ export const fallbackPages: SiteEntry[] = [
   {
     slug: 'about',
     kicker: 'About',
-    title: 'A personal site for work, notes, and experiments.',
+    title: 'I build small, understandable systems.',
     description:
-      'Placeholder copy for a site about open software, hardware, Bitcoin, and decentralized technology.',
+      'Personal notes and projects around open software, hardware, Bitcoin, and decentralized technology.',
     body:
-      'This page is intentionally editable through EmDash. Replace this placeholder with a sharper biography, current focus, and the problems worth working on.',
+      'I care about tools people can inspect, repair, and keep using. This site collects the public work, writing, and experiments that fit that direction.',
   },
   {
     slug: 'contact',
     kicker: 'Contact',
     title: 'Reach out about projects, writing, or open technology.',
     description:
-      'The first version keeps contact simple: GitHub, public social links, and a short note that can be edited later.',
+      'The simplest path is best: email, GitHub, or X for public context.',
     body:
-      'Use this page for a short personal contact note, preferred channels, and the kinds of conversations that are useful.',
+      'Useful notes are specific: what you are building, what you need, and where the current code or context lives.',
   },
 ];
 
@@ -78,9 +78,9 @@ export const fallbackPosts: SiteEntry[] = [
   {
     slug: 'first-note',
     title: 'First note',
-    description: 'A placeholder post for the EmDash-backed blog.',
+    description: 'Why this site starts small and editable.',
     body:
-      'This is a starter post. Replace it in EmDash with a real note about what you are building, reading, or testing.',
+      'The site is intentionally plain: a few routes, editable content, and Cloudflare-native hosting. More structure can wait until the writing needs it.',
     date: '2026-07-03',
     tags: ['notes'],
     featured: true,
@@ -88,9 +88,9 @@ export const fallbackPosts: SiteEntry[] = [
   {
     slug: 'tools-worth-owning',
     title: 'Tools worth owning',
-    description: 'A placeholder topic for open, durable, user-controlled tools.',
+    description: 'A note on open, durable, user-controlled tools.',
     body:
-      'A short draft can live here about software and hardware that rewards understanding instead of lock-in.',
+      'Good tools reward understanding. They keep data portable, expose the important moving parts, and avoid turning basic work into dependency on someone else’s dashboard.',
     date: '2026-07-03',
     tags: ['tools'],
   },
@@ -104,7 +104,7 @@ export const fallbackProjects: SiteEntry[] = [
     body:
       'The site itself is the first project: editable content, Cloudflare-native hosting, and a small codebase that can evolve in public.',
     status: 'Building',
-    repoUrl: 'https://github.com/SamuelPalubaCZ/paluba.me',
+    repoUrl: 'https://github.com/SamuelPalubaCZ/paluba-me',
     siteUrl: 'https://paluba.me',
     tags: ['Astro', 'Cloudflare', 'EmDash'],
     featured: true,
@@ -112,9 +112,9 @@ export const fallbackProjects: SiteEntry[] = [
   {
     slug: 'open-systems-notes',
     title: 'Open systems notes',
-    description: 'A placeholder collection for research, experiments, and links around open technology.',
+    description: 'Research, experiments, and links around open technology.',
     body:
-      'Use EmDash to turn this into a real project page with links, screenshots, and implementation notes.',
+      'A place for practical notes on systems that remain understandable: protocols, tooling, hardware, and deployment choices that do not hide all the important details.',
     status: 'Drafting',
     tags: ['Research', 'Open tech'],
   },

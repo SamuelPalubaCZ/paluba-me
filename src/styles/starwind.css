@@ -1,6 +1,5 @@
 @import "tailwindcss";
 @import "tw-animate-css";
-@plugin "@tailwindcss/forms";
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
