@@ -1,29 +1,48 @@
 {
-  "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "paluba-me",
-  "main": "@astrojs/cloudflare/entrypoints/server",
-  "compatibility_date": "2026-07-03",
-  "compatibility_flags": ["nodejs_compat"],
-  "assets": {
-    "binding": "ASSETS",
-    "directory": "./dist/client"
-  },
-  "observability": {
-    "enabled": true
-  },
-  "d1_databases": [
-    {
-      "binding": "DB",
-      "database_name": "paluba-me-cms"
-    }
-  ],
-  "r2_buckets": [
-    {
-      "binding": "MEDIA",
-      "bucket_name": "paluba-me-media"
-    }
-  ],
-  "vars": {
-    "PUBLIC_SITE_URL": "https://paluba.me"
-  }
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "paluba-me",
+	"main": "@astrojs/cloudflare/entrypoints/server",
+	"compatibility_date": "2026-07-03",
+	"compatibility_flags": [
+		"nodejs_compat"
+	],
+	"assets": {
+		"binding": "ASSETS",
+		"directory": "./dist/client"
+	},
+	"observability": {
+		"enabled": true
+	},
+	"routes": [
+		{
+			"pattern": "paluba.me",
+			"custom_domain": true
+		},
+		{
+			"pattern": "www.paluba.me",
+			"custom_domain": true
+		}
+	],
+	"d1_databases": [
+		{
+			"binding": "DB",
+			"database_name": "paluba-me-cms",
+			"database_id": "df22be6d-0b3d-4cb0-91a5-0c2219aa9ec7"
+		}
+	],
+	"kv_namespaces": [
+		{
+			"binding": "SESSION",
+			"id": "b8405aa2d61a4ded8e145a1a7d2150b2"
+		}
+	],
+	"r2_buckets": [
+		{
+			"binding": "MEDIA",
+			"bucket_name": "paluba-me-media"
+		}
+	],
+	"vars": {
+		"PUBLIC_SITE_URL": "https://paluba.me"
+	}
 }

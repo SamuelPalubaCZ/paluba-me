@@ -15,6 +15,7 @@ export default defineConfig({
     emdash({
       database: d1({ binding: 'DB' }),
       storage: r2({ binding: 'MEDIA' }),
+      siteUrl: 'https://paluba.me',
     }),
   ],
   vite: {
